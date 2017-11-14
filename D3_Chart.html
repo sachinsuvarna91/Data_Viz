@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Data Visualization</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/c3.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
+
+<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="c3.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+
+	<nav
+		class="navbar navbar-default navbar-fixed-top navbar-static-top navbar-inverse">
+		<div class="container-fluid ">
+			<a class="navbar-brand">Data Visualization</a>
+		</div>
+	</nav>
+	</br>
+	</br>
+	</br>
+	</br>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="container">
+				<div class="chart col-lg-4 col-md-6 col-sm-12" id="chart"
+					style="margin: auto auto;"></div>
+
+
+			</div>
+		</div>
+	</div>
+	<script>
+		
+		var a = getData();
+		alert(a);
+	</script>
+	<script type="text/javascript">
+		window.onload = function() {
+			
+			var chart = c3.generate({
+				binto:'#chart',
+				data : {
+					url : 'dataset.csv',
+					type : 'spline',
+					axis : {
+						y : {
+							label : { // ADD
+								text : 'Speed Kbps',
+								position : 'outer-middle'
+							}
+						}
+					},
+					zoom : {
+						enabled : true
+					},
+				    axis: {
+				        x: {
+				            label: 'X Label'
+				        },
+				        y: {
+				            label: 'Y Label'
+				        }
+				    }
+				}
+			});
+
+			setTimeout(function() {
+				chart.unload({
+					ids : ['_time']
+				});
+			}, 150);
+			
+			setTimeout(function () {
+			    chart.transform('bar');
+			}, 3000);
+			
+			
+			setTimeout(function () {
+			    chart.transform('line');
+			}, 6000);
+			
+			
+			setTimeout(function() {
+				chart.unload({
+					ids : [ '_time', 'Throughput' ]
+				});
+			}, 10000);
+
+			setTimeout(function() {
+				chart.unload({
+					ids : [ '_time', 'Rx_Bytes' ]
+				});
+			}, 14000);
+			
+			setTimeout(function () {
+			    chart.transform('bar');
+			}, 16000);
+			
+		
+		}
+	</script>
+
+
+</body>
+</html>
